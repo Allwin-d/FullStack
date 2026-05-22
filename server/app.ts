@@ -1,11 +1,13 @@
 import express from "express";
 import UserRouter from "./routes/userRoutes/userRoute";
+import ProductRouter from "./routes/productRoutes/productRoutes";
 
 const PORT = 3000;
-const app = express(); //Express application is created here 
+const app = express(); //Express application is created here
 
 app.set("view engine", "ejs");
-app.use("/user", UserRouter);  //Endpoint for the user Route , and UserRouter is the Router Middleware
+app.use("/user", UserRouter); //Endpoint for the user Route , and UserRouter is the Router Middleware
+app.use("/product", ProductRouter);
 
 app.listen(PORT, () => {
   console.log(`Server successfully running on PORT ${PORT}`);
