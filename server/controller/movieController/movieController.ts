@@ -44,4 +44,13 @@ const getSingleMovie = (req: Request, res: Response) => {
   }
 };
 
-export { getHome, getAllMovies, getSingleMovie };
+const addNewMovie = (req: Request, res: Response) => {
+  const newMovie = {
+    id: Movies.length + 1,
+    movie: String(Movies.length + 1),
+  };
+  Movies.push(newMovie);
+  res.status(200).json({ newMovie, message: "New Movie Added Successfully" });
+};
+
+export { getHome, getAllMovies, getSingleMovie,addNewMovie };
