@@ -33,6 +33,7 @@ const getAllMovies = (req: Request, res: Response) => {
   res.status(200).json(Movies);
 };
 
+//Get
 const getSingleMovie = (req: Request, res: Response) => {
   const Movie = Movies.find((item) => item.id === Number(req.params.id));
   if (Movie) {
@@ -44,6 +45,7 @@ const getSingleMovie = (req: Request, res: Response) => {
   }
 };
 
+//Add (POST)
 const addNewMovie = (req: Request, res: Response) => {
   const newMovie = {
     id: Movies.length + 1,
@@ -53,4 +55,22 @@ const addNewMovie = (req: Request, res: Response) => {
   res.status(200).json({ newMovie, message: "New Movie Added Successfully" });
 };
 
-export { getHome, getAllMovies, getSingleMovie,addNewMovie };
+const updateMovie = (req: Request, res: Response) => {
+  const movie = Movies.find((item) => item.id === Number(req.params.id));
+
+  if (!movie) {
+    return res
+      .status(404)
+      .json({ message: `Movie not found for ID ${req.params.id}` });
+  }
+
+  movie.id = Number(req.params.id);
+  movie.movie = req.body.movie;
+
+  return res.status(200).json({
+    message: `Movie ID ${movie.id} updated successfully`,
+    data: movie,
+  });
+};
+
+export { getHome, getAllMovies, getSingleMovie, addNewMovie, updateMovie };
