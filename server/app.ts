@@ -1,21 +1,10 @@
 import express from "express";
 import { Request, Response } from "express";
 import path from "path";
-import mongoose from "mongoose";
+import connectToDb from "./Db/db";
 
-//Connection between Node.js application and MongoDB Atlas Database
-mongoose
-  .connect(
-    "mongodb+srv://AllwinSelva:AllwinSelva7@cluster0.wrlejny.mongodb.net/",
-  )
-
-  //If database connection is successful
-  .then(() => console.log("Database Connected Successfully"))
-
-  //If database connection fails
-  .catch((err) => console.log(err));
-
-const PORT = 3000;
+//Port number imported from .env
+const PORT = process.env.PORT;
 
 //Creation of Express Application
 const app = express();
@@ -31,6 +20,9 @@ app.set("views", path.join(__dirname, "views"));
 //This middleware converts JSON body into JavaScript object
 app.use(express.json());
 
+//DB Connection
+connectToDb();
+
 // Logger Middleware
 //This middleware runs for every request
 app.use("/", (req: Request, res: Response, next) => {
@@ -41,9 +33,6 @@ app.use("/", (req: Request, res: Response, next) => {
   //next() moves the request to the next middleware/route
   next();
 });
-
-//Router Middleware
-//These routers handle separate route modules
 
 //Server Listening
 app.listen(PORT, () => {
