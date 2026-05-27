@@ -43,7 +43,7 @@ app.use("/", (req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
-//This is for the Movie Router 
+//This is for the Movie Router
 app.use("/", router);
 
 // Server Listening

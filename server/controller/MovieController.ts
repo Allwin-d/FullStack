@@ -3,7 +3,6 @@ import Movie from "../models/MovieModel.js";
 
 const createMovie = async (req: Request, res: Response) => {
   try {
-    console.log("Movie Details : ", req.body);
     const movieDetails = await Movie.create(req.body);
     res.status(201).json({
       success: true,
@@ -11,7 +10,6 @@ const createMovie = async (req: Request, res: Response) => {
       data: movieDetails,
     });
   } catch (err) {
-    console.log("Failed to create movie :", err);
     res.status(500).json({
       success: false,
       message: "Failed to create movie",
@@ -20,4 +18,21 @@ const createMovie = async (req: Request, res: Response) => {
   }
 };
 
-export { createMovie };
+const getMovies = async (req: Request, res: Response) => {
+  try {
+    const allMovieData = await Movie.find({});
+    res.status(200).json({
+      success: true,
+      message: "Fetched all movie data",
+      data: allMovieData,
+    });
+  } catch (err) {
+    res.status(404).json({
+      success: false,
+      message: "Failed to fetch the Movie data",
+      error: err instanceof Error ? err.message : "Unknown Error",
+    });
+  }
+};
+
+export { createMovie, getMovies };

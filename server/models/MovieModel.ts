@@ -8,6 +8,11 @@ const MovieSchema = new Schema({
     unique: true,
     maxLength: [100, "Title Cannot exceed 100 characters"],
   },
+  image: {
+    type: String,
+    required: [true, "Image is required "],
+    trim: true,
+  },
   genre: {
     type: [String],
     required: [true, "Genre is required"],
