@@ -10,12 +10,11 @@ const connectToDb = async () => {
     if (!mongoUrl) {
       throw new Error("MongoDB URL is missing");
     }
-
     await mongoose.connect(mongoUrl);
-
     console.log("Database Connected Successfully");
   } catch (err) {
     console.log("Database Connection Failed", err);
+    process.exit(1);
   }
 };
 
