@@ -3,6 +3,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import dotenv from "dotenv";
 import connectToDb from "./Db/db.js";
+import router from "./routes/MovieRoutes.js";
 
 // Load environment variables
 dotenv.config();
@@ -41,6 +42,9 @@ app.use("/", (req: Request, res: Response, next: NextFunction) => {
   // next() moves the request to the next middleware/route
   next();
 });
+
+//This is for the Movie Router 
+app.use("/", router);
 
 // Server Listening
 app.listen(PORT, () => {
