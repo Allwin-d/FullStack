@@ -72,5 +72,5 @@ const MovieSchema = new Schema({
   },
 });
 
-const Movie = mongoose.model("Book", MovieSchema);
+const Movie = mongoose.model("Movie", MovieSchema);
 export default Movie;

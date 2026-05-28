@@ -1,12 +1,10 @@
+import "dotenv/config";
 import express, { Request, Response, NextFunction } from "express";
 import path from "path";
 import { fileURLToPath } from "url";
-import dotenv from "dotenv";
+
 import connectToDb from "./Db/db.js";
 import router from "./routes/MovieRoutes.js";
-
-// Load environment variables
-dotenv.config();
 
 // Create __dirname manually for ES Modules
 const __filename = fileURLToPath(import.meta.url);
@@ -44,7 +42,7 @@ app.use("/", (req: Request, res: Response, next: NextFunction) => {
 });
 
 //This is for the Movie Router
-app.use("/", router);
+app.use("/api/movies", router);
 
 // Server Listening
 app.listen(PORT, () => {
