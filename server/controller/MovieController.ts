@@ -19,6 +19,31 @@ const createMovie = async (req: Request, res: Response) => {
   }
 };
 
+//GET single Movie by ID
+
+const getSingleMovieById = async (req: Request, res: Response) => {
+  try {
+    const singleMovie = await Movie.findById(req.params.id);
+    if (!singleMovie) {
+      return res.status(404).json({
+        success: false,
+        message: "Movie not found",
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      message: "Single movie fetched successfully",
+      data: singleMovie,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      message: "Failed to fetch single Movie",
+      error: err instanceof Error ? err.message : "Unknown Error",
+    });
+  }
+};
+
 //GET all the movies
 const getMovies = async (req: Request, res: Response) => {
   try {
@@ -92,4 +117,4 @@ const deleteMovie = async (req: Request, res: Response) => {
   }
 };
 
-export { createMovie, getMovies, updateMovie, deleteMovie };
+export { createMovie, getSingleMovieById, getMovies, updateMovie, deleteMovie };
