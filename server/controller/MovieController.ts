@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import Movie from "../models/MovieModel.js";
+
 //CREATE a new movie
 const createMovie = async (req: Request, res: Response) => {
   try {
@@ -20,7 +21,6 @@ const createMovie = async (req: Request, res: Response) => {
 };
 
 //GET single Movie by ID
-
 const getSingleMovieById = async (req: Request, res: Response) => {
   try {
     const singleMovie = await Movie.findById(req.params.id);
