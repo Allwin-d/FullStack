@@ -4,7 +4,8 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 import connectToDb from "./Db/db.js";
-import router from "./routes/MovieRoutes.js";
+import movieRouter from "./routes/MovieRoutes.js";
+import authRouter from "./routes/authRoutes.js";
 
 // Create __dirname manually for ES Modules
 const __filename = fileURLToPath(import.meta.url);
@@ -42,7 +43,10 @@ app.use("/", (req: Request, res: Response, next: NextFunction) => {
 });
 
 //This is for the Movie Router
-app.use("/api/movies", router);
+app.use("/api/movies", movieRouter);
+
+//Auth router
+app.use("/api/auth", authRouter);
 
 // Server Listening
 app.listen(PORT, () => {
