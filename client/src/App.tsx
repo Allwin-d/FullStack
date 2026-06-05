@@ -1,7 +1,10 @@
+import Home from "./pages/Home/Home";
+
 const App = () => {
   return (
     <div className="">
-      <p>Frontend setup done </p>
+      <Home />
+      <h1>Hello</h1>
     </div>
   );
 };
