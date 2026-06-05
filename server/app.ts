@@ -2,6 +2,7 @@ import "dotenv/config";
 import express, { Request, Response, NextFunction } from "express";
 import path from "path";
 import { fileURLToPath } from "url";
+import cors from "cors";
 
 import connectToDb from "./Db/db.js";
 import movieRouter from "./routes/MovieRoutes.js";
@@ -23,6 +24,12 @@ app.set("view engine", "ejs");
 // Telling Express where the views folder exists
 app.set("views", path.join(__dirname, "views"));
 
+app.use(
+  cors({
+    origin: "http://localhost:5173", // React/Vite frontend
+    credentials: true,
+  }),
+);
 // JSON Parser Middleware
 // Express cannot directly understand req.body
 // This middleware converts JSON body into JavaScript object
