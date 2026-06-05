@@ -59,14 +59,16 @@ const loginUser = async (req: Request, res: Response) => {
   }
 
   const accessToken = jwt.sign(
-    {//these data gets stored inside a token
+    {
+      //these data gets stored inside a token
       userId: userData._id,
+      userName: userData.userName,
       email: userData.email,
       role: userData.role,
     },
     process.env.JWT_SECRET_KEY as string, //its a secret key
     {
-      expiresIn: "30m", //token expires after 30 min 
+      expiresIn: "30m", //token expires after 30 min
     },
   );
 
@@ -77,4 +79,12 @@ const loginUser = async (req: Request, res: Response) => {
   });
 };
 
-export { registerUser, loginUser };
+//for Admin User
+const AdminUser = (req: Request, res: Response) => {
+  res.status(200).json({
+    success: true,
+    message: "Welcome Admin",
+  });
+};
+
+export { registerUser, loginUser , AdminUser};

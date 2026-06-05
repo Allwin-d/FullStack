@@ -47,7 +47,6 @@ app.use("/api/movies", movieRouter);
 
 //Auth router
 app.use("/api/auth", authRouter);
-
 // Server Listening
 app.listen(PORT, () => {
   console.log(`Server successfully running on PORT ${PORT}`);
