@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { GET_ALL_MOVIES } from "../../url/url";
 import axios from "axios";
 import type { movieDataType } from "../Home/home.types";
+import Header from "../../components/Header";
 
 const Home = () => {
   const API_URL = GET_ALL_MOVIES;
@@ -16,7 +17,7 @@ const Home = () => {
   const { data, isError, isLoading } = useQuery({
     queryKey: ["Movies"],
     queryFn: getAllMovies,
-    enabled: !!API_URL,
+    enabled: !!API_URL, //the query fn gets called only if the (API_URL) available
   });
 
   if (isError) {
@@ -28,10 +29,11 @@ const Home = () => {
   }
 
   return (
-    <div>
+    <div className="min-h-screen w-full ">
+      <Header />
       {data?.data.map((item) => (
-        <div>
-          <h1>{item.title}</h1>
+        <div className="">
+          <h1 className="">{item.title}</h1>
         </div>
       ))}
     </div>
