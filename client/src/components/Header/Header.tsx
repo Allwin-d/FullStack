@@ -1,5 +1,5 @@
 import { APP_TITLE } from "../../constants/constantVariables";
-import logo from "../images/icon.png";
+import logo from "../../images/icon.png";
 
 const Header = () => {
   return (
