@@ -1,4 +1,4 @@
-import { APP_TITLE } from "../constants/constantVariables";
+import { APP_TITLE } from "../../constants/constantVariables";
 import logo from "../images/icon.png";
 
 const Header = () => {
