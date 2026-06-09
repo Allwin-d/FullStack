@@ -51,6 +51,7 @@ const getMovies = async (req: Request, res: Response) => {
     return res.status(200).json({
       success: true,
       message: "Fetched all movie data",
+      totalMovies: allMovieData.length,
       data: allMovieData,
     });
   } catch (err) {
