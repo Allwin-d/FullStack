@@ -46,6 +46,7 @@ const Home = () => {
       <div className="flex flex-col space-y-10  p-12 bg-gray-100">
         {data?.data.map((movie) => (
           <MovieTile
+            id ={movie._id}
             image={movie.image}
             title={movie.title}
             releaseYear={movie.releaseYear}

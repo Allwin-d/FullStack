@@ -1,4 +1,5 @@
 export type MovieTileType = {
+  id:string,
   image: string;
   title: string;
   releaseYear: number;
