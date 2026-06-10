@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 
-type userInfoType = {
+export type userInfoType = {
   userId: string;
   userName: string;
   email: string;
@@ -15,7 +15,6 @@ const adminMiddleware = (req: Request, res: Response, next: NextFunction) => {
       message: "Sorry You are not an admin , You can't access this page",
     });
   }
-
   next();
 };
 

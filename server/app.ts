@@ -7,6 +7,7 @@ import cors from "cors";
 import connectToDb from "./Db/db.js";
 import movieRouter from "./routes/MovieRoutes.js";
 import authRouter from "./routes/authRoutes.js";
+import imageRouter from "./routes/imageRoutes.js";
 
 // Create __dirname manually for ES Modules
 const __filename = fileURLToPath(import.meta.url);
@@ -54,6 +55,10 @@ app.use("/api/movies", movieRouter);
 
 //Auth router
 app.use("/api/auth", authRouter);
+
+//image upload router
+app.use("/api/image", imageRouter);
+
 // Server Listening
 app.listen(PORT, () => {
   console.log(`Server successfully running on PORT ${PORT}`);
