@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import { GET_ALL_MOVIES } from "../../url/url";
 import axios from "axios";
 import type { movieDataType } from "../Home/home.types";
-import Header from "../../components/Header/Header";
 import {
   FAILED_LOADING_DATA,
   LOADING_DATA,
@@ -42,7 +41,6 @@ const Home = () => {
 
   return (
     <div className="min-h-screen w-full ">
-      <Header />
       <div className="flex flex-col space-y-10  p-12 bg-gray-100">
         {data?.data.map((movie) => (
           <MovieTile
