@@ -7,10 +7,10 @@ const Genre = ({ genre }: GenreType) => {
         <p
           className={`${
             id === 1
-              ? "bg-red-300 text-red-700"
+              ? "bg-red-300 text-red-700 p-2 border-red-900 border-2"
               : id === 2
-                ? "bg-blue-300 text-blue-700"
-                : "bg-green-300 text-green-700"
+                ? "bg-blue-300 text-blue-700 p-2 border-blue-900 border-2"
+                : "bg-green-300 text-green-700 p-2 border-green-900 border-2"
           } rounded-3xl px-3 font-medium`}
         >
           {genre}
