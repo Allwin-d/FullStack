@@ -22,7 +22,7 @@ const registerUser = async (req: Request, res: Response) => {
   const hashPassword = await bcrypt.hash(password, salt);
 
   await User.create({
-    userName,
+    userName ,
     email,
     password: hashPassword,
     role,
@@ -87,4 +87,4 @@ const AdminUser = (req: Request, res: Response) => {
   });
 };
 
-export { registerUser, loginUser , AdminUser};
+export { registerUser, loginUser, AdminUser };
