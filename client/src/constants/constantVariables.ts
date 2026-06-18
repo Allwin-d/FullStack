@@ -7,3 +7,13 @@ export const SYNOPSIS = "Synopsis";
 export const RELEASE_YEAR = "Release Year";
 export const DURATIION = "Duration";
 export const RATING = "Rating";
+export const CREATE_ACCOUNT = "Create Your Account";
+export const APP_DESCRIPTION =
+  "Join Movie Catalog to explore , rate and discuss your favorite films";
+export const FULL_NAME = "Full Name";
+export const EMAIL_ADDRESS = "Email Address";
+export const PASSWORD = "Password";
+export const ROLE = "Role";
+export const SELECT_ROLE = "Select Role";
+export const USER = "User";
+export const ADMIN = "Admin";
