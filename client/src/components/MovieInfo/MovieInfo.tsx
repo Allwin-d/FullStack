@@ -1,6 +1,6 @@
 import { MINS } from "../../constants/constantVariables";
 import type { MovieInfoType } from "./movieInfo.types";
-import Genre from "../Genre/Genre";
+import Genre from "../MovieGenre/MovieGenre";
 
 const MovieInfo = ({
   title,
@@ -20,7 +20,7 @@ const MovieInfo = ({
           {MINS}
         </div>
       </div>
-    <Genre genre ={genre} />
+      <Genre genre={genre} />
     </div>
   );
 };

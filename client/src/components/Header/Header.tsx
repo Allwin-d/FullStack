@@ -1,11 +1,21 @@
+import { useNavigate } from "react-router-dom";
 import { APP_TITLE } from "../../constants/constantVariables";
 import logo from "../../images/icon.png";
 
 const Header = () => {
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate("/");
+  };
+
   return (
     <div className="w-full h-20 flex flex-row items-center justify-between bg-gray-300 p-12 shadow-sm shadow-gray-500 sticky top-0 z-50 ">
       {/* Left side section */}
-      <div className="flex flex-row space-x-2 items-center">
+      <div
+        className="flex flex-row space-x-2 items-center"
+        onClick={handleNavigate}
+      >
         <img
           src={logo}
           alt="App Logo"

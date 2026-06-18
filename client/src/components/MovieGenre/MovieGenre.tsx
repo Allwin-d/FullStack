@@ -1,6 +1,6 @@
-import type { GenreType } from "./genre.types";
+import type { GenreType } from "./MovieGenre.types";
 
-const Genre = ({ genre }: GenreType) => {
+const MovieGenre = ({ genre }: GenreType) => {
   return (
     <div className="flex flex-row space-x-4 text-xl">
       {genre.map((genre: string, id: number) => (
@@ -20,4 +20,4 @@ const Genre = ({ genre }: GenreType) => {
   );
 };
 
-export default Genre;
+export default MovieGenre;
