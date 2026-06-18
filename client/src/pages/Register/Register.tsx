@@ -13,6 +13,9 @@ import {
 } from "../../constants/constantVariables";
 import { FaFilm } from "react-icons/fa6";
 import { CiUser } from "react-icons/ci";
+import { FaSearch } from "react-icons/fa";
+import { IoMdCloudOutline } from "react-icons/io";
+import { FaRegStar } from "react-icons/fa";
 import { capitalize } from "../../utils/helperFunction";
 import type { userDetailType } from "./register.types";
 import { MdOutlineEmail } from "react-icons/md";
@@ -173,7 +176,61 @@ const Register = () => {
 
         {/* Right side section  */}
         <div className="min-h-screen w-full bg-gradient-to-b from-purple-900 to-orange-800">
-          <p>world</p>
+          <div className="flex flex-col space-y-24 items-center justify-center p-12">
+            <h1 className="font-bold text-6xl text-white">
+              Your Movie world starts here 🍿
+            </h1>
+            <p className="text-gray-300 text-4xl font-bold leading-loose tracking-wider [word-spacing:8px]">
+              Track films, rate them, and join the conversation with other movie
+              lovers.
+            </p>
+            <div className="flex flex-row space-x-6">
+              <div className="relative">
+                <div className="absolute top-4 -left-12 p-2 bg-gray-300/30 rounded-lg">
+                  <FaSearch className="text-white text-xl" />
+                </div>
+
+                <div className="flex flex-col space-y-4">
+                  <p className="font-bold text-4xl text-white">
+                    Search & Filter
+                  </p>
+                  <p className="font-bold text-xl text-gray-300">
+                    Find movies by genre, language, or actor instantly.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-row space-x-6">
+              <div className="relative">
+                <div className="absolute top-4 -left-16 p-2 bg-gray-300/30 rounded-lg">
+                  <IoMdCloudOutline className="text-white text-xl" />
+                </div>
+
+                <div className="flex flex-col space-y-4">
+                  <p className="font-bold text-4xl text-white">
+                    Join the discussion
+                  </p>
+                  <p className="font-bold text-xl text-gray-300">
+                    Comment on movies and see what others think.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-row space-x-6">
+              <div className="relative">
+                <div className="absolute top-4 -left-12 p-2 bg-gray-300/30 rounded-lg">
+                  <FaRegStar className="text-white text-xl" />
+                </div>
+
+                <div className="flex flex-col space-y-4">
+                  <p className="font-bold text-4xl text-white">Rate & review</p>
+                  <p className="font-bold text-xl text-gray-300">
+                    Keep track of every movie's rating, cast and details.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
