@@ -1,20 +1,28 @@
 import { useState } from "react";
 import {
   ADMIN,
+  APP_ABOUT,
   APP_DESCRIPTION,
   APP_TITLE,
+  COMMENT_ON_MOVIES,
   CREATE_ACCOUNT,
   EMAIL_ADDRESS,
+  FIND_MOVIES,
   FULL_NAME,
+  JOIN_THE_DISCUSSION,
+  KEEP_TRACK_ON,
+  MOVIE_STARTS_HERE,
   PASSWORD,
+  RATE_AND_REVIEW,
   ROLE,
+  SEARCH_AND_FILTER,
   SELECT_ROLE,
   USER,
 } from "../../constants/constantVariables";
 import { FaFilm } from "react-icons/fa6";
+import { FaRegComment } from "react-icons/fa";
 import { CiUser } from "react-icons/ci";
 import { FaSearch } from "react-icons/fa";
-import { IoMdCloudOutline } from "react-icons/io";
 import { FaRegStar } from "react-icons/fa";
 import { capitalize } from "../../utils/helperFunction";
 import type { userDetailType } from "./register.types";
@@ -53,7 +61,7 @@ const Register = () => {
   const registerUserMutation = useMutation({
     mutationFn: registerUser,
     onSuccess: () => {
-      console.log("Data");
+      console.log("registered Successfully");
     },
     onError: (error) => {
       console.error(error);
@@ -167,7 +175,7 @@ const Register = () => {
                   type="submit"
                   className="bg-red-600 text-white py-3 rounded-lg hover:transition duration-150 hover:bg-red-700 font-bold tracking-wider hover:scale-105"
                 >
-                  Create Account
+                  {CREATE_ACCOUNT}
                 </button>
               </form>
             </div>
@@ -178,54 +186,55 @@ const Register = () => {
         <div className="min-h-screen w-full bg-gradient-to-b from-purple-900 to-orange-800">
           <div className="flex flex-col space-y-24 items-center justify-center p-12">
             <h1 className="font-bold text-6xl text-white">
-              Your Movie world starts here 🍿
+              {MOVIE_STARTS_HERE}
             </h1>
             <p className="text-gray-300 text-4xl font-bold leading-loose tracking-wider [word-spacing:8px]">
-              Track films, rate them, and join the conversation with other movie
-              lovers.
+              {APP_ABOUT}
             </p>
-            <div className="flex flex-row space-x-6">
+            <div className="flex flex-row space-x-6 w-[400px]">
               <div className="relative">
-                <div className="absolute top-4 -left-12 p-2 bg-gray-300/30 rounded-lg">
-                  <FaSearch className="text-white text-xl" />
+                <div className="absolute top-4 -left-20 p-2 bg-gray-300/30 rounded-lg ">
+                  <FaSearch className="text-white text-5xl" />
                 </div>
 
                 <div className="flex flex-col space-y-4">
                   <p className="font-bold text-4xl text-white">
-                    Search & Filter
+                    {SEARCH_AND_FILTER}
                   </p>
                   <p className="font-bold text-xl text-gray-300">
-                    Find movies by genre, language, or actor instantly.
+                    {FIND_MOVIES}
                   </p>
                 </div>
               </div>
             </div>
-            <div className="flex flex-row space-x-6">
+            <div className="flex flex-row space-x-6 w-[400px]">
               <div className="relative">
-                <div className="absolute top-4 -left-16 p-2 bg-gray-300/30 rounded-lg">
-                  <IoMdCloudOutline className="text-white text-xl" />
+                <div className="absolute top-4 -left-20 p-2 bg-gray-300/30 rounded-lg">
+                  <FaRegComment className="text-white text-5xl" />
                 </div>
 
                 <div className="flex flex-col space-y-4">
                   <p className="font-bold text-4xl text-white">
-                    Join the discussion
+                    {JOIN_THE_DISCUSSION}
                   </p>
                   <p className="font-bold text-xl text-gray-300">
-                    Comment on movies and see what others think.
+                    {COMMENT_ON_MOVIES}
                   </p>
                 </div>
               </div>
             </div>
-            <div className="flex flex-row space-x-6">
+            <div className="flex flex-row space-x-6 w-[400px]">
               <div className="relative">
-                <div className="absolute top-4 -left-12 p-2 bg-gray-300/30 rounded-lg">
-                  <FaRegStar className="text-white text-xl" />
+                <div className="absolute top-4 -left-20 p-2 bg-gray-300/30 rounded-lg">
+                  <FaRegStar className="text-white text-5xl" />
                 </div>
 
                 <div className="flex flex-col space-y-4">
-                  <p className="font-bold text-4xl text-white">Rate & review</p>
+                  <p className="font-bold text-4xl text-white">
+                    {RATE_AND_REVIEW}
+                  </p>
                   <p className="font-bold text-xl text-gray-300">
-                    Keep track of every movie's rating, cast and details.
+                    {KEEP_TRACK_ON}
                   </p>
                 </div>
               </div>
