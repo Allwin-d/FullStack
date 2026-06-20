@@ -4,6 +4,7 @@ import {
   APP_TITLE,
   DATA_IS_PROTECTED,
   EMAIL_ADDRESS,
+  LOGGED_IN,
   PASSWORD,
   PICK_UP,
   SAVED_CATALOG,
@@ -12,6 +13,7 @@ import {
   SIGN_IN,
   SIGN_IN_DESC,
   SING_IN_ABOUT,
+  WELCOME_BACK,
   YOUR_COMMENTS,
 } from "../../constants/constantVariables";
 import { capitalize } from "../../utils/helperFunction";
@@ -25,6 +27,14 @@ import { useMutation } from "@tanstack/react-query";
 import type { userDetailType } from "./login.types";
 import axios from "axios";
 import { POST_LOGIN_USER } from "../../url/url";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+
+export type responeDataType = {
+  success: boolean;
+  message: string;
+  accessToken: string;
+};
 
 const Login = () => {
   const [userDetail, setUserDetail] = useState<userDetailType>({
@@ -32,7 +42,13 @@ const Login = () => {
     password: "",
   });
 
+  const [responseData, setResponseData] = useState<responeDataType | null>(
+    null,
+  );
+
   const API_LOGIN_USER = POST_LOGIN_USER;
+
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -43,17 +59,24 @@ const Login = () => {
   };
 
   const loginUser = async (userData: userDetailType) => {
-    const response = await axios.post(API_LOGIN_USER, userData);
-    console.log("Login Response Data : ", response.data);
+    const response = await axios.post<responeDataType>(
+      API_LOGIN_USER,
+      userData,
+    );
+    console.log("Login Response Data : ", response);
+    setResponseData(response.data);
   };
 
   const loginMutation = useMutation({
     mutationFn: loginUser,
     onSuccess: () => {
       console.log("Logged In successfully");
+      toast.success(LOGGED_IN);
+      navigate("/");
     },
     onError: () => {
       console.log("Failed to Login");
+      toast.error(responseData?.message ?? "Invalid Credentials");
     },
   });
 
@@ -74,7 +97,7 @@ const Login = () => {
                 <FaFilm className="text-5xl p-2 rounded-md bg-sky-600 text-white" />
               </div>
               <div className="flex space-x-6">
-                <h1 className="font-bold text-3xl ">Welcome back👋 </h1>
+                <h1 className="font-bold text-3xl ">{WELCOME_BACK}</h1>
               </div>
 
               <p className="text-gray-600 text-2xl font-bold leading-8 [word-spacing:8px]">

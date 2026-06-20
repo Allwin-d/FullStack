@@ -5,10 +5,21 @@ import Register from "./pages/Register/Register";
 import AddMovie from "./pages/AddMovies/AddMovie";
 import MovieDetail from "./pages/MovieDetail/MovieDetail";
 import Header from "./components/Header/Header";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   return (
     <div className="">
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          style: {
+            fontSize: "18px",
+            padding: "16px",
+            minWidth: "350px",
+          },
+        }}
+      />
       <BrowserRouter>
         <Header />
         <Routes>

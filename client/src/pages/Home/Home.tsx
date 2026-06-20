@@ -42,9 +42,10 @@ const Home = () => {
   return (
     <div className="min-h-screen w-full ">
       <div className="flex flex-col space-y-10  p-12 bg-gray-100">
-        {data?.data.map((movie) => (
+        {data?.data.map((movie, key) => (
           <MovieTile
-            id ={movie._id}
+            key={key}
+            id={movie._id}
             image={movie.image}
             title={movie.title}
             releaseYear={movie.releaseYear}

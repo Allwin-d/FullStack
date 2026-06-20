@@ -42,3 +42,6 @@ export const DATA_IS_PROTECTED =
   "Your data is protected with encrypted authentication.";
 export const YOUR_COMMENTS = "Your comments";
 export const SEE_AND_MANAGE = "See and manage all the comments you've posted";
+export const WELCOME_BACK = "Welcome back👋 ";
+export const LOGGED_IN = "Logged In Successfully";
+export const INVALID_CRED = "Invalid Credentials";
