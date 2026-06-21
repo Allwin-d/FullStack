@@ -45,7 +45,9 @@ export const SEE_AND_MANAGE = "See and manage all the comments you've posted";
 export const WELCOME_BACK = "Welcome back👋 ";
 export const LOGGED_IN = "Logged In Successfully";
 export const INVALID_CRED = "Invalid Credentials";
+export const DONT_HAVE_AN_ACCOUNT = "Don't have an Account ? ";
 
-
-//Register page 
+//Register page
 export const REGISTER_SUCCESS = "Registered Successfully";
+export const ALREADY_HAVE_AN_ACCOUNT = "Already have an Account ?";
+export const REGISTER = "Register";

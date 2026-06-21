@@ -3,11 +3,13 @@ import {
   ACCESS_THE_FULL_MOVIE,
   APP_TITLE,
   DATA_IS_PROTECTED,
+  DONT_HAVE_AN_ACCOUNT,
   EMAIL_ADDRESS,
   INVALID_CRED,
   LOGGED_IN,
   PASSWORD,
   PICK_UP,
+  REGISTER,
   SAVED_CATALOG,
   SECURE_LOGIN,
   SEE_AND_MANAGE,
@@ -30,6 +32,7 @@ import axios from "axios";
 import { POST_LOGIN_USER } from "../../url/url";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import type { responseDataType } from "./login.types";
 
 const Login = () => {
   const [userDetail, setUserDetail] = useState<userDetailType>({
@@ -50,7 +53,10 @@ const Login = () => {
   };
 
   const loginUser = async (userData: userDetailType) => {
-    const response = await axios.post(API_LOGIN_USER, userData);
+    const response = await axios.post<responseDataType>(
+      API_LOGIN_USER,
+      userData,
+    );
     console.log("Login Response Data : ", response);
     return response.data;
   };
@@ -59,6 +65,7 @@ const Login = () => {
     mutationFn: loginUser,
     onSuccess: (data) => {
       toast.success(data.message ?? LOGGED_IN);
+      localStorage.setItem("Token", data.accessToken);
       navigate("/");
     },
     onError: (error) => {
@@ -139,6 +146,15 @@ const Login = () => {
                 >
                   {SIGN_IN}
                 </button>
+                <p className="text-center font-bold text-gray-500 text-xl tracking-wider ">
+                  {DONT_HAVE_AN_ACCOUNT}
+                  <span
+                    className="text-sky-600 cursor-pointer"
+                    onClick={() => navigate("/register")}
+                  >
+                    {REGISTER}
+                  </span>
+                </p>
               </form>
             </div>
           </div>
@@ -147,8 +163,10 @@ const Login = () => {
         {/* Right side section  */}
         <div className="min-h-screen w-full bg-gradient-to-b from-sky-900 to-sky-700">
           <div className="flex flex-col space-y-24 items-center justify-center p-12">
-            <h1 className="font-bold text-6xl text-white">{PICK_UP}</h1>
-            <p className="text-gray-300 text-4xl font-bold leading-loose tracking-wider [word-spacing:8px]">
+            <h1 className="font-bold text-6xl text-white leading-normal">
+              {PICK_UP}
+            </h1>
+            <p className="text-gray-300 text-4xl font-bold leading-normal tracking-wider [word-spacing:8px]">
               {SING_IN_ABOUT}
             </p>
             <div className="flex flex-row space-x-6  w-[400px]">

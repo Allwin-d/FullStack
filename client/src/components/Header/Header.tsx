@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { APP_TITLE } from "../../constants/constantVariables";
 import logo from "../../images/icon.png";
+import useAuth from "../../hooks/useAuth";
+import type { payloadType } from "../../hooks/useAuth.types";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -8,6 +10,9 @@ const Header = () => {
   const handleNavigate = () => {
     navigate("/");
   };
+
+  const token = useAuth() as payloadType;
+  console.log("Token Details : ", token);
 
   return (
     <div className="w-full h-20 flex flex-row items-center justify-between bg-gray-300 p-12 shadow-sm shadow-gray-500 sticky top-0 z-50 ">
@@ -25,9 +30,13 @@ const Header = () => {
       </div>
 
       {/* Right side section  */}
-      <div className="flex flex-row space-x-2 text-xl">
-        <p className="font-medium cursor-pointer">Hi , Allwin</p>
-        <p className="text-2xl">👋</p>
+      <div className="flex flex-row space-x-4 text-xl items-center">
+        <p className="font-medium cursor-pointer bg-red-600 p-2 rounded-full text-white px-4">
+          {token.role}
+        </p>
+        <p className="font-medium cursor-pointer">
+          Hi {token.userName.split(" ")[0]}{" "}
+        </p>
       </div>
     </div>
   );

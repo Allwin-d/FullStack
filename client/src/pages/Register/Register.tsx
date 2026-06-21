@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {
   ADMIN,
+  ALREADY_HAVE_AN_ACCOUNT,
   APP_ABOUT,
   APP_DESCRIPTION,
   APP_TITLE,
@@ -18,6 +19,7 @@ import {
   ROLE,
   SEARCH_AND_FILTER,
   SELECT_ROLE,
+  SIGN_IN,
   USER,
 } from "../../constants/constantVariables";
 import { FaFilm } from "react-icons/fa6";
@@ -26,7 +28,7 @@ import { CiUser } from "react-icons/ci";
 import { FaSearch } from "react-icons/fa";
 import { FaRegStar } from "react-icons/fa";
 import { capitalize } from "../../utils/helperFunction";
-import type { userDetailType } from "./register.types";
+import type { responseDataType, userDetailType } from "./register.types";
 import { MdOutlineEmail } from "react-icons/md";
 import { TbLockPassword } from "react-icons/tb";
 import { useMutation } from "@tanstack/react-query";
@@ -34,10 +36,6 @@ import axios from "axios";
 import { POST_REGISTER_USER } from "../../url/url";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-
-export type responseDataType = {
-  success: boolean;
-};
 
 const Register = () => {
   const [userDetail, setUserDetail] = useState<userDetailType>({
@@ -62,7 +60,10 @@ const Register = () => {
   const API_REGISTER_USER = POST_REGISTER_USER;
 
   const registerUser = async (userData: userDetailType) => {
-    const response = await axios.post(API_REGISTER_USER, userData);
+    const response = await axios.post<responseDataType>(
+      API_REGISTER_USER,
+      userData,
+    );
     console.log("Response : ", response);
     return response.data;
   };
@@ -191,6 +192,15 @@ const Register = () => {
                 >
                   {CREATE_ACCOUNT}
                 </button>
+                <p className="text-center font-bold text-gray-500 text-xl tracking-wider ">
+                  {ALREADY_HAVE_AN_ACCOUNT}
+                  <span
+                    className="text-orange-600 cursor-pointer"
+                    onClick={() => navigate("/login")}
+                  >
+                    {SIGN_IN}
+                  </span>
+                </p>
               </form>
             </div>
           </div>
