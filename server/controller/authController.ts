@@ -10,6 +10,13 @@ const registerUser = async (req: Request, res: Response) => {
     $or: [{ userName }, { email }],
   });
 
+  if (password.length < 8) {
+    return res.status(400).json({
+      success: false,
+      message: "Password must be at least 8 characters long",
+    });
+  }
+
   if (isUserExist) {
     return res.status(400).json({
       success: false,
@@ -22,7 +29,7 @@ const registerUser = async (req: Request, res: Response) => {
   const hashPassword = await bcrypt.hash(password, salt);
 
   await User.create({
-    userName ,
+    userName,
     email,
     password: hashPassword,
     role,
@@ -54,7 +61,7 @@ const loginUser = async (req: Request, res: Response) => {
   if (!passwordExist) {
     return res.status(400).json({
       success: false,
-      message: "Invalid Credentials , Incorrect password",
+      message: "Invalid Credentials",
     });
   }
 
