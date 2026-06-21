@@ -14,6 +14,7 @@ import {
   MOVIE_STARTS_HERE,
   PASSWORD,
   RATE_AND_REVIEW,
+  REGISTER_SUCCESS,
   ROLE,
   SEARCH_AND_FILTER,
   SELECT_ROLE,
@@ -31,6 +32,12 @@ import { TbLockPassword } from "react-icons/tb";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { POST_REGISTER_USER } from "../../url/url";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+
+export type responseDataType = {
+  success: boolean;
+};
 
 const Register = () => {
   const [userDetail, setUserDetail] = useState<userDetailType>({
@@ -39,6 +46,8 @@ const Register = () => {
     password: "",
     role: "",
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -60,17 +69,22 @@ const Register = () => {
 
   const registerUserMutation = useMutation({
     mutationFn: registerUser,
-    onSuccess: () => {
-      console.log("registered Successfully");
+    onSuccess: (data) => {
+      toast.success(data.message ?? REGISTER_SUCCESS);
+      navigate("/login");
     },
     onError: (error) => {
-      console.error(error);
+      toast.error(error.message);
     },
   });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    registerUserMutation.mutate(userDetail);
     e.preventDefault();
+    if (userDetail.password.length < 8) {
+      toast.error("Password must be at least 8 characters long");
+      return;
+    }
+    registerUserMutation.mutate(userDetail);
   };
 
   console.log("user Detail :", userDetail);

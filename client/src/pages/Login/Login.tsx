@@ -4,6 +4,7 @@ import {
   APP_TITLE,
   DATA_IS_PROTECTED,
   EMAIL_ADDRESS,
+  INVALID_CRED,
   LOGGED_IN,
   PASSWORD,
   PICK_UP,
@@ -30,21 +31,11 @@ import { POST_LOGIN_USER } from "../../url/url";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
-export type responeDataType = {
-  success: boolean;
-  message: string;
-  accessToken: string;
-};
-
 const Login = () => {
   const [userDetail, setUserDetail] = useState<userDetailType>({
     email: "",
     password: "",
   });
-
-  const [responseData, setResponseData] = useState<responeDataType | null>(
-    null,
-  );
 
   const API_LOGIN_USER = POST_LOGIN_USER;
 
@@ -59,29 +50,25 @@ const Login = () => {
   };
 
   const loginUser = async (userData: userDetailType) => {
-    const response = await axios.post<responeDataType>(
-      API_LOGIN_USER,
-      userData,
-    );
+    const response = await axios.post(API_LOGIN_USER, userData);
     console.log("Login Response Data : ", response);
-    setResponseData(response.data);
+    return response.data;
   };
 
   const loginMutation = useMutation({
     mutationFn: loginUser,
-    onSuccess: () => {
-      console.log("Logged In successfully");
-      toast.success(LOGGED_IN);
+    onSuccess: (data) => {
+      toast.success(data.message ?? LOGGED_IN);
       navigate("/");
     },
-    onError: () => {
-      console.log("Failed to Login");
-      toast.error(responseData?.message ?? "Invalid Credentials");
+    onError: (error) => {
+      toast.error(error.message ?? INVALID_CRED);
     },
   });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log("Button clicked ");
     loginMutation.mutate(userDetail);
   };
 
