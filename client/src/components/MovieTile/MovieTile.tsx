@@ -28,7 +28,7 @@ const MovieTile = ({
       </div>
 
       {/* This is for the Right Side Section */}
-      <MovieActions rating={rating} />
+      <MovieActions rating={rating} id={id} />
     </div>
   );
 };

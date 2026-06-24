@@ -1,6 +1,7 @@
 export type movieDataType = {
   success: boolean;
   message: string;
+  totalMovies : number,
   data: singleMovie[];
 };
 

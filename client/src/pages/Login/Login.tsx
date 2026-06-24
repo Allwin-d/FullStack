@@ -1,7 +1,6 @@
 import { useState } from "react";
 import {
   ACCESS_THE_FULL_MOVIE,
-  APP_TITLE,
   DATA_IS_PROTECTED,
   DONT_HAVE_AN_ACCOUNT,
   EMAIL_ADDRESS,
@@ -21,7 +20,6 @@ import {
 } from "../../constants/constantVariables";
 import { capitalize } from "../../utils/helperFunction";
 import { MdMailOutline } from "react-icons/md";
-import { FaFilm } from "react-icons/fa6";
 import { TbLockPassword } from "react-icons/tb";
 import { HiOutlineSave } from "react-icons/hi";
 import { GrSecure } from "react-icons/gr";
@@ -33,6 +31,7 @@ import { POST_LOGIN_USER } from "../../url/url";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import type { responseDataType } from "./login.types";
+import AppTitle from "../../components/AppTitle/AppTitle";
 
 const Login = () => {
   const [userDetail, setUserDetail] = useState<userDetailType>({
@@ -86,10 +85,7 @@ const Login = () => {
         <div className="min-h-screen w-full bg-blue-400">
           <div className="h-full w-full bg-gray-100 p-12">
             <div className="flex flex-col space-y-8">
-              <div className="flex font-bold text-5xl space-x-6">
-                <h1>{APP_TITLE}</h1>
-                <FaFilm className="text-5xl p-2 rounded-md bg-sky-600 text-white" />
-              </div>
+              <AppTitle />
               <div className="flex space-x-6">
                 <h1 className="font-bold text-3xl ">{WELCOME_BACK}</h1>
               </div>

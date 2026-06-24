@@ -8,6 +8,7 @@ import {
 } from "../../constants/constantVariables";
 import MovieTile from "../../components/MovieTile/MovieTile";
 import Header from "../../components/Header/Header";
+import AppTitle from "../../components/AppTitle/AppTitle";
 const Home = () => {
   const API_URL = GET_ALL_MOVIES;
   console.log("This is the api url for Get All Movies : ", API_URL);
@@ -43,6 +44,7 @@ const Home = () => {
   return (
     <div className="min-h-screen w-full ">
       <Header />
+      <AppTitle totalMovies={data?.totalMovies ?? 0} />
       <div className="flex flex-col space-y-10  p-12 bg-gray-100">
         {data?.data.map((movie, key) => (
           <MovieTile

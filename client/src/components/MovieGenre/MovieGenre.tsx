@@ -5,6 +5,7 @@ const MovieGenre = ({ genre }: GenreType) => {
     <div className="flex flex-row space-x-4 text-xl">
       {genre.map((genre: string, id: number) => (
         <p
+          key={id}
           className={`${
             id === 1
               ? "bg-red-300 text-red-700 p-2 border-red-900 border-2"

@@ -1,25 +1,29 @@
 import { FaEye } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 import { FaTrashAlt } from "react-icons/fa";
-import { floorValue } from "../../utils/helperFunction";
 import type { MovieActionsType } from "./movieActions.types";
 import useAuth from "../../hooks/useAuth";
 import type { payloadType } from "../../hooks/useAuth.types";
+import { useNavigate } from "react-router-dom";
 
-const MovieActions = ({ rating }: MovieActionsType) => {
+const MovieActions = ({ rating, id }: MovieActionsType) => {
   const token = useAuth() as payloadType;
+  const navigate = useNavigate();
 
   return (
-    <div className="flex flex-row space-x-20 font-bold text-4xl">
-      <p className="cursor-pointer">⭐{floorValue(rating)}</p>
+    <div
+      className={`${token.role === "Admin" ? "flex flex-row space-x-20 font-bold text-4xl" : " font-bold text-4xl mr-10"}`}
+    >
+      <p className="cursor-pointer">⭐{rating}</p>
       <FaEye
-        className={`cursor-pointer ${token.role === "User" ? "hidden" : "visible"}`}
+        className={`cursor-pointer transition duration-200 hover:scale-125`}
+        onClick={() => navigate(`/movieDetail/${id}`)}
       />
       <FaEdit
-        className={`cursor-pointer ${token.role === "User" ? "hidden" : "visible"}`}
+        className={`cursor-pointer transition duration-200 hover:scale-125 ${token.role === "User" ? "hidden" : "visible"}`}
       />
       <FaTrashAlt
-        className={`cursor-pointer ${token.role === "User" ? "hidden" : "visible"}`}
+        className={`cursor-pointer transition duration-200 hover:scale-125 ${token.role === "User" ? "hidden" : "visible"}`}
       />
     </div>
   );

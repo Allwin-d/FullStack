@@ -13,6 +13,7 @@ import Cast from "../../components/Cast/Cast";
 import MovieStatistics from "../../components/MovieStatistics/MovieStatistics";
 import MovieMetaData from "../../components/MovieMetaData/MovieMetaData";
 import Image from "../../components/Image/Image";
+import Header from "../../components/Header/Header";
 
 const MovieDetail = () => {
   const { id } = useParams();
@@ -41,6 +42,7 @@ const MovieDetail = () => {
 
   return (
     <div className="w-full min-h-screen bg-gray-100">
+      <Header />
       <div className="flex flex-row justify-start items-center space-x-10 p-12 bg-gradient-to-r from-purple-900 to-orange-800 ">
         {/* Left side section */}
         {/* <img
