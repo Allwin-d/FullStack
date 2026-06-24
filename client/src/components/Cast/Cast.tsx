@@ -16,11 +16,25 @@ const Cast = ({ cast }: castTypes) => {
             key={id}
             className="flex flex-row items-center justify-center space-x-2 rounded-full border-gray-200 border-4 px-6 py-2"
           >
-            <p className="rounded-full bg-red-500 text-lg text-white p-4 font-bold ">
+            <p
+              className={`rounded-full text-3xl text-white p-4 font-bold ${
+                id === 1
+                  ? "bg-red-500"
+                  : id === 2
+                    ? "bg-blue-500"
+                    : id === 3
+                      ? "bg-green-500"
+                      : id === 4
+                        ? "bg-orange-500"
+                        : id === 5
+                          ? "bg-pink-600"
+                          : "bg-purple-600"
+              }`}
+            >
               {Initials(person)}
             </p>
-            <CiUser />
-            <p className="text-base font-medium">{person}</p>
+            <CiUser className="text-5xl" />
+            <p className="text-xl font-medium">{person}</p>
           </div>
         ))}
       </div>
