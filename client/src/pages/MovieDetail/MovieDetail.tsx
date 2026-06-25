@@ -74,7 +74,7 @@ const MovieDetail = () => {
             </p>
           </div>
           {/* Right Side Section */}
-          <div className="flex space-x-20 font-bold text-6xl ">
+          <div className="flex space-x-20 font-bold text-5xl ">
             <FaEdit
               className={`cursor-pointer text-white transition duration-200 hover:scale-125 ${token.role === "User" ? "hidden" : "visible"}`}
             />

@@ -17,7 +17,7 @@ const Cast = ({ cast }: castTypes) => {
             className="flex flex-row items-center justify-center space-x-2 rounded-full border-gray-200 border-4 px-6 py-2"
           >
             <p
-              className={`rounded-full text-3xl text-white p-4 font-bold ${
+              className={`rounded-full text-xl text-white p-4 font-bold ${
                 id === 1
                   ? "bg-red-500"
                   : id === 2

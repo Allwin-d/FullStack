@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {
   ACCESS_THE_FULL_MOVIE,
+  APP_TITLE,
   DATA_IS_PROTECTED,
   DONT_HAVE_AN_ACCOUNT,
   EMAIL_ADDRESS,
@@ -31,7 +32,7 @@ import { POST_LOGIN_USER } from "../../url/url";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import type { responseDataType } from "./login.types";
-import AppTitle from "../../components/AppTitle/AppTitle";
+import { FaFilm } from "react-icons/fa6";
 
 const Login = () => {
   const [userDetail, setUserDetail] = useState<userDetailType>({
@@ -65,7 +66,7 @@ const Login = () => {
     onSuccess: (data) => {
       toast.success(data.message ?? LOGGED_IN);
       localStorage.setItem("Token", data.accessToken);
-      navigate("/");
+      navigate("/home");
     },
     onError: (error) => {
       toast.error(error.message ?? INVALID_CRED);
@@ -85,7 +86,10 @@ const Login = () => {
         <div className="min-h-screen w-full bg-blue-400">
           <div className="h-full w-full bg-gray-100 p-12">
             <div className="flex flex-col space-y-8">
-              <AppTitle />
+              <div className="flex font-bold text-5xl space-x-6">
+                <h1>{APP_TITLE}</h1>
+                <FaFilm className="text-5xl p-2 rounded-md bg-orange-600 text-white" />
+              </div>
               <div className="flex space-x-6">
                 <h1 className="font-bold text-3xl ">{WELCOME_BACK}</h1>
               </div>

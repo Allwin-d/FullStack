@@ -72,7 +72,7 @@ const Register = () => {
     mutationFn: registerUser,
     onSuccess: (data) => {
       toast.success(data.message ?? REGISTER_SUCCESS);
-      navigate("/login");
+      navigate("/");
     },
     onError: (error) => {
       toast.error(error.message);
@@ -196,7 +196,7 @@ const Register = () => {
                   {ALREADY_HAVE_AN_ACCOUNT}
                   <span
                     className="text-orange-600 cursor-pointer"
-                    onClick={() => navigate("/login")}
+                    onClick={() => navigate("/")}
                   >
                     {SIGN_IN}
                   </span>

@@ -8,7 +8,7 @@ export type AppTitletype = {
 };
 
 const AppTitle = ({ totalMovies }: AppTitletype) => {
-  const { role } = useAuth() as payloadType;
+  const token = useAuth() as payloadType;
 
   return (
     <div className=" flex flex-row font-bold text-3xl space-x-6 w-full h-40  bg-gradient-to-r from-purple-900 to-purple-800 p-12 justify-between items-center ">
@@ -24,7 +24,7 @@ const AppTitle = ({ totalMovies }: AppTitletype) => {
 
       {/* Right side section */}
       <div className="text-2xl text-white">
-        {role === "Admin" ? (
+        {token?.role === "Admin" ? (
           <button className="bg-blue-500  rounded-full p-4 transition duration-200 hover:bg-blue-700 hover:scale-110">
             + Add Movie
           </button>
