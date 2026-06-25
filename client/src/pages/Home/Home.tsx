@@ -44,7 +44,13 @@ const Home = () => {
   return (
     <div className="min-h-screen w-full ">
       <Header />
-      <AppTitle totalMovies={data?.totalMovies ?? 0} />
+      <AppTitle
+        totalMovies={data?.totalMovies ?? 0}
+        title="Movie Catalogue"
+        description="Movies in Collection"
+        buttonInfo="+ Add Movie"
+        text="view only"
+      />
       <div className="flex flex-col space-y-10  p-12 bg-gray-100">
         {data?.data.map((movie, key) => (
           <MovieTile

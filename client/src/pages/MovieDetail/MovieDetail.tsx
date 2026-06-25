@@ -56,9 +56,10 @@ const MovieDetail = () => {
           height="h-2/4"
           object="object-fill"
           rounded="rounded-lg"
+          shadow="shadow-xl shadow-gray-300"
         />
 
-        <div className="flex justify-between items-center w-full">
+        <div className="flex  justify-between items-center w-full">
           {/* Left Side section */}
           <div className="flex flex-col space-y-14">
             <p className="text-white text-4xl font-bold">{data?.title}</p>
