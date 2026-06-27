@@ -1,6 +1,10 @@
 import Header from "../../components/Header/Header";
 import AppTitle from "../../components/AppTitle/AppTitle";
 import { FaExclamationCircle } from "react-icons/fa";
+import { BsFillPinFill } from "react-icons/bs";
+import { RiStarLine } from "react-icons/ri";
+import { ImParagraphLeft } from "react-icons/im";
+import { BASIC_INFO_DESC, BASIC_INFORMATION, CAST_MEMBERS, DIRECTOR, DURATIION, DURATION_DESC, GENRE, GENRE_AND_CAST, GENRE_CAST_DESC, LANGUAGE, MOVIE_TITLE, RATING, RATING_DESC, RELEASE_YEAR, SYNOPSIS, SYNOPSIS_DESC } from "../../constants/constantVariables";
 
 const AddMovie = () => {
   return (
@@ -17,19 +21,19 @@ const AddMovie = () => {
         <div className="flex flex-col  p-6 bg-gray-100 space-y-4 shadow-lg shadow-gray-200 rounded-lg">
           <div className="flex space-x-2">
             <div className="flex items-center">
-              <FaExclamationCircle className="w-10 h-10 p-2 text-red-500 bg-red-100 rounded-full" />
+              <FaExclamationCircle className="w-16 h-16 p-2 text-red-500 bg-red-100 rounded-full" />
             </div>
-            <div className="flex flex-col justify-center">
-              <p>Basic Information</p>
-              <p>Title, director, language and year</p>
+            <div className="flex flex-col space-y-2 justify-center">
+              <h1 className="font-bold text-3xl">{BASIC_INFORMATION}</h1>
+              <p className="font-bold text-xl text-gray-600">{BASIC_INFO_DESC}</p>
             </div>
           </div>
           <hr></hr>
           {/* Basic info field section */}
-          <div className="grid gri-cols-1 md:grid-cols-2 gap-10  ">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10  ">
             <div className="flex flex-col space-y-4">
               <p className="font-bold text-gray-600 text-xl tracking-wider">
-                Movie Title <span className="text-red-600">*</span>
+                {MOVIE_TITLE} <span className="text-red-600">*</span>
               </p>
               <input
                 type="text"
@@ -39,7 +43,7 @@ const AddMovie = () => {
             </div>
             <div className="flex flex-col space-y-4">
               <p className="font-bold text-gray-600 text-xl tracking-wider">
-                Director <span className="text-red-600">*</span>
+                {DIRECTOR} <span className="text-red-600">*</span>
               </p>
               <input
                 type="text"
@@ -49,16 +53,17 @@ const AddMovie = () => {
             </div>
             <div className="flex flex-col space-y-4">
               <p className="font-bold text-gray-600 text-xl tracking-wider">
-                Language <span className="text-red-600">*</span>
+                {LANGUAGE} <span className="text-red-600">*</span>
               </p>
               <input
-                type="number"
+                type="text"
                 className="p-5 w-3/4 pl-10 font-bold text-white bg-gray-800 rounded-lg tracking-widest"
+                placeholder="eg:English"
               />
             </div>
             <div className="flex flex-col space-y-4">
               <p className="font-bold text-gray-600 text-xl tracking-wider">
-                Release Year <span className="text-red-600">*</span>
+                {RELEASE_YEAR} <span className="text-red-600">*</span>
               </p>
               <input
                 type="text"
@@ -73,11 +78,11 @@ const AddMovie = () => {
         <div className="flex flex-col  p-6 bg-gray-100 space-y-4 shadow-lg shadow-gray-200 rounded-lg">
           <div className="flex space-x-2">
             <div>
-              <p>s</p>
+              <BsFillPinFill  className="w-16 h-16 p-2 text-blue-500 bg-blue-100 rounded-full"/>
             </div>
-            <div className="flex flex-col  justify-center">
-              <p>Genre & Cast</p>
-              <p>Add genres and cast members</p>
+            <div className="flex flex-col space-y-2  justify-center">
+              <h1  className="font-bold text-3xl">{GENRE_AND_CAST}</h1>
+              <p  className="font-bold text-xl text-gray-600">{GENRE_CAST_DESC}</p>
             </div>
           </div>
           <hr></hr>
@@ -85,21 +90,21 @@ const AddMovie = () => {
           <div className="grid gri-cols-1 gap-10  ">
             <div className="flex flex-col space-y-4">
               <p className="font-bold text-gray-600 text-xl tracking-wider">
-                Genre <span className="text-red-600">*</span>
+                {GENRE} <span className="text-red-600">*</span>
               </p>
               <input
                 type="text"
-                placeholder="Type a genre and pres Enter(e.g. Action)"
+                placeholder="Type a genre and pres Enter(eg: Action)"
                 className="p-5 w-1/2 pl-10 font-bold text-white bg-gray-800 rounded-lg tracking-widest"
               />
             </div>
             <div className="flex flex-col space-y-4">
               <p className="font-bold text-gray-600 text-xl tracking-wider">
-                Cast Members
+                {CAST_MEMBERS}
               </p>
               <input
                 type="text"
-                placeholder="Type a name and press Enter(e.g.Joaquin Phoenix)"
+                placeholder="Type a name and press Enter(eg:Joaquin Phoenix)"
                 className="p-5 w-1/2 pl-10 font-bold text-white bg-gray-800 rounded-lg tracking-widest"
               />
             </div>
@@ -110,11 +115,11 @@ const AddMovie = () => {
         <div className="flex flex-col p-6 bg-gray-100 space-y-4 shadow-lg shadow-gray-200 rounded-lg">
           <div className="flex space-x-2">
             <div>
-              <p>s</p>
+              <RiStarLine className="w-16 h-16 p-2 text-green-500 bg-green-100 rounded-full" />
             </div>
-            <div className="flex flex-col justify-center">
-              <p>Rating & Durationt</p>
-              <p>Movie rating and runtime</p>
+            <div className="flex flex-col space-y-2 justify-center">
+              <h1 className="font-bold text-3xl">{RATING}</h1>
+              <p className="font-bold text-xl text-gray-600">{RATING_DESC}</p>
             </div>
           </div>
           <hr></hr>
@@ -122,25 +127,25 @@ const AddMovie = () => {
           <div className="grid gri-cols-2 gap-10">
             <div className="flex flex-col space-y-4">
               <p className="font-bold text-gray-600 text-xl tracking-wider">
-                Rating <span className="text-red-600">*</span>
+                {RATING} <span className="text-red-600">*</span>
               </p>
               <input
                 type="text"
-                placeholder="e.g.8.4"
+                placeholder="eg:8.4"
                 className="p-5 w-1/2 pl-10 font-bold text-white bg-gray-800 rounded-lg tracking-widest"
               />
-              <p>Enter a value between 1.0 and 10.0</p>
+              <p>{RATING_DESC}</p>
             </div>
             <div className="flex flex-col space-y-4">
               <p className="font-bold text-gray-600 text-xl tracking-wider">
-                Duration(MINS) <span className="text-red-600">*</span>
+                {DURATIION} <span className="text-red-600">*</span>
               </p>
               <input
                 type="number"
-                placeholder="e.g.122"
+                placeholder="eg:122"
                 className="p-5 w-1/2 pl-10 font-bold text-white bg-gray-800 rounded-lg tracking-widest"
               />
-              <p>Total runtime in minutes</p>
+              <p>{DURATION_DESC}</p>
             </div>
           </div>
         </div>
@@ -149,11 +154,11 @@ const AddMovie = () => {
         <div className="flex flex-col  p-6 bg-gray-100 space-y-4 shadow-lg shadow-gray-200 rounded-lg">
           <div className="flex space-x-2">
             <div>
-              <p>s</p>
+              <ImParagraphLeft className="w-16 h-16 p-2 text-yellow-500 bg-yellow-100 rounded-full" />
             </div>
-            <div className="flex flex-col justify-center">
-              <p>Synopsis</p>
-              <p>Short description of the movie</p>
+            <div className="flex flex-col space-y-2 justify-center">
+              <h1 className="font-bold text-3xl">{SYNOPSIS}</h1>
+              <p className="font-bold text-xl text-gray-600">{SYNOPSIS_DESC}</p>
             </div>
           </div>
           <hr></hr>
@@ -161,7 +166,7 @@ const AddMovie = () => {
           <div className="grid gri-cols-1 gap-10 ">
             <div className="flex flex-col space-y-4">
               <p className="font-bold text-gray-600 text-xl tracking-wider">
-                Synopsis
+                {SYNOPSIS}
               </p>
               <textarea
                 rows={5}
