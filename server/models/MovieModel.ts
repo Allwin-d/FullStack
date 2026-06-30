@@ -28,7 +28,7 @@ const MovieSchema = new Schema({
       "Horror",
       "Mystery",
       "Romance",
-      "Sci-Fi",
+      "Science Fiction",
       "Thriller",
       "War",
       "Western",
