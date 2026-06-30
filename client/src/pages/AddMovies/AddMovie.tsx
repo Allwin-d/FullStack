@@ -5,6 +5,7 @@ import { BsFillPinFill } from "react-icons/bs";
 import { RiStarLine } from "react-icons/ri";
 import { ImParagraphLeft } from "react-icons/im";
 import { FaRegImage } from "react-icons/fa6";
+import { ImCancelCircle } from "react-icons/im";
 import {
   BASIC_INFO_DESC,
   BASIC_INFORMATION,
@@ -32,36 +33,18 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { ADD_MOVIE } from "../../url/url";
 import { useNavigate } from "react-router-dom";
-
-export type movieDetailsTypes = {
-  title: string;
-  director: string;
-  language: string;
-  releaseYear: number;
-  genre: string[];
-  cast: string[];
-  rating: number;
-  duration: number;
-  synopsis: string;
-  image: string;
-};
-
-export type responseDataType = {
-  success: boolean;
-  message: string;
-  data: movieDetailsTypes;
-};
+import type { movieDetailsTypes, responseDataType } from "./addMovies.types";
 
 const AddMovie = () => {
   const [movieDetails, setMovieDetails] = useState<movieDetailsTypes>({
     title: "",
     director: "",
     language: "",
-    releaseYear: 0,
+    releaseYear: null,
     genre: [],
     cast: [],
-    rating: 0,
-    duration: 0,
+    rating: null,
+    duration: null,
     synopsis: "",
     image: "",
   });
@@ -105,6 +88,17 @@ const AddMovie = () => {
     setInputs((prev) => ({
       ...prev,
       [field]: "",
+    }));
+  };
+
+  const handleRemove = (index: number, field: "genre" | "cast") => {
+    const updatedArray = [...movieDetails[field]];
+
+    updatedArray.splice(index, 1);
+
+    setMovieDetails((prev) => ({
+      ...prev,
+      [field]: updatedArray,
     }));
   };
 
@@ -161,7 +155,7 @@ const AddMovie = () => {
                 type="text"
                 name="title"
                 value={movieDetails.title}
-                className="p-5  pl-10 font-bold text-white bg-gray-800 rounded-lg tracking-widest w-3/4"
+                className="p-5  pl-10 font-semibold text-white bg-gray-800 rounded-lg tracking-widest w-3/4 "
                 placeholder="eg:Joker"
                 onChange={handleChange}
               />
@@ -174,7 +168,7 @@ const AddMovie = () => {
                 type="text"
                 name="director"
                 value={movieDetails.director}
-                className="p-5 w-3/4 pl-10 font-bold text-white bg-gray-800 rounded-lg tracking-widest"
+                className="p-5  pl-10 font-semibold text-white bg-gray-800 rounded-lg tracking-widest w-3/4 "
                 placeholder="eg:Todd Philips"
                 onChange={handleChange}
               />
@@ -187,7 +181,7 @@ const AddMovie = () => {
                 type="text"
                 name="language"
                 value={movieDetails.language}
-                className="p-5 w-3/4 pl-10 font-bold text-white bg-gray-800 rounded-lg tracking-widest"
+                className="p-5  pl-10 font-semibold text-white bg-gray-800 rounded-lg tracking-widest w-3/4 "
                 placeholder="eg:English"
                 onChange={handleChange}
               />
@@ -199,9 +193,9 @@ const AddMovie = () => {
               <input
                 type="number"
                 name="releaseYear"
-                value={movieDetails.releaseYear}
+                value={movieDetails.releaseYear ?? ""}
                 placeholder="eg:2019"
-                className="p-5 w-3/4 pl-10 font-bold text-white bg-gray-800 rounded-lg tracking-widest"
+                className="p-5  pl-10 font-semibold text-white bg-gray-800 rounded-lg tracking-widest w-3/4 "
                 onChange={handleChange}
               />
             </div>
@@ -209,7 +203,7 @@ const AddMovie = () => {
         </div>
 
         {/* Genre & Cast Section */}
-        <div className="flex flex-col  p-6 bg-gray-100 space-y-4 shadow-lg shadow-gray-200 rounded-lg">
+        <div className="flex flex-col  p-6 bg-gray-100 space-y-4 shadow-lg shadow-gray-200 rounded-lg pb-14">
           <div className="flex space-x-2">
             <div>
               <BsFillPinFill className="w-16 h-16 p-2 text-blue-500 bg-blue-100 rounded-full" />
@@ -233,7 +227,7 @@ const AddMovie = () => {
                 name="genre"
                 value={inputs.genre}
                 placeholder="Type a genre and pres Enter(eg: Action)"
-                className="p-5 w-1/2 pl-10 font-bold text-white bg-gray-800 rounded-lg tracking-widest"
+                className="p-5  pl-10 font-semibold text-white bg-gray-800 rounded-lg tracking-widest w-3/4 "
                 onChange={(e) =>
                   setInputs((prev) => ({
                     ...prev,
@@ -242,6 +236,20 @@ const AddMovie = () => {
                 }
                 onKeyDown={(e) => handleInputArray(e, "genre")}
               />
+              <div className="flex flex-row space-x-2">
+                {movieDetails.genre.map((genre, id) => (
+                  <div
+                    key={id}
+                    className="flex flex-row items-center justify-center space-x-2 bg-purple-200  p-2 rounded-full"
+                  >
+                    <p className="font-bold text-purple-700">{genre}</p>
+                    <ImCancelCircle
+                      className="h-8 w-6 hover:cursor-pointer"
+                      onClick={() => handleRemove(id, "genre")}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
             <div className="flex flex-col space-y-4">
               <p className="font-bold text-gray-600 text-xl tracking-wider">
@@ -253,7 +261,7 @@ const AddMovie = () => {
                 name="cast"
                 value={inputs.cast}
                 placeholder="Type a name and press Enter(eg:Joaquin Phoenix)"
-                className="p-5 w-1/2 pl-10 font-bold text-white bg-gray-800 rounded-lg tracking-widest"
+                className="p-5  pl-10 font-semibold text-white bg-gray-800 rounded-lg tracking-widest w-3/4 "
                 onKeyDown={(e) => handleInputArray(e, "cast")}
                 onChange={(e) =>
                   setInputs((prev) => ({
@@ -262,6 +270,20 @@ const AddMovie = () => {
                   }))
                 }
               />
+              <div className="flex flex-row space-x-2">
+                {movieDetails.cast.map((cast, id) => (
+                  <div
+                    key={id}
+                    className="flex flex-row items-center justify-center space-x-2 bg-blue-200  p-2 rounded-full"
+                  >
+                    <p className="font-bold text-blue-700">{cast}</p>
+                    <ImCancelCircle
+                      className="h-8 w-6 hover:cursor-pointer"
+                      onClick={() => handleRemove(id, "cast")}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -287,12 +309,12 @@ const AddMovie = () => {
               <input
                 type="number"
                 name="rating"
-                value={movieDetails.rating}
+                value={movieDetails.rating ?? ""}
                 placeholder="eg:8.4"
-                className="p-5 w-1/2 pl-10 font-bold text-white bg-gray-800 rounded-lg tracking-widest"
+                className="p-5  pl-10 font-semibold text-white bg-gray-800 rounded-lg tracking-widest w-3/4 "
                 onChange={handleChange}
               />
-              <p>{RATING_DESC}</p>
+              <p className="text-xl text-gray-600">{RATING_DESC}</p>
             </div>
             <div className="flex flex-col space-y-4">
               <p className="font-bold text-gray-600 text-xl tracking-wider">
@@ -301,12 +323,12 @@ const AddMovie = () => {
               <input
                 type="number"
                 name="duration"
-                value={movieDetails.duration}
+                value={movieDetails.duration ?? ""}
                 placeholder="eg:122"
-                className="p-5 w-1/2 pl-10 font-bold text-white bg-gray-800 rounded-lg tracking-widest"
+                className="p-5  pl-10 font-semibold text-white bg-gray-800 rounded-lg tracking-widest w-3/4 "
                 onChange={handleChange}
               />
-              <p>{DURATION_DESC}</p>
+              <p className="text-xl text-gray-600">{DURATION_DESC}</p>
             </div>
           </div>
         </div>
@@ -335,7 +357,7 @@ const AddMovie = () => {
                 value={movieDetails.synopsis}
                 placeholder="Write a short description of the movie plot"
                 onChange={handleChange}
-                className=" border border-gray-300 px-4 py-3 outline-none transition focus:border-violet-500 focus:ring-2 focus:ring-violet-200 p-5 w-full pl-10 font-bold text-white bg-gray-800 rounded-lg tracking-widest"
+                className="p-5  pl-10 font-semibold text-white bg-gray-800 rounded-lg tracking-widest w-3/4 "
               />
             </div>
           </div>
@@ -365,8 +387,8 @@ const AddMovie = () => {
                 type="text"
                 name="image"
                 value={movieDetails.image}
-                placeholder="Type a genre and pres Enter(eg: Action)"
-                className="p-5 w-1/2 pl-10 font-bold text-white bg-gray-800 rounded-lg tracking-widest"
+                placeholder="https://image.tmdb.org/"
+                className="p-5  pl-10 font-semibold text-white bg-gray-800 rounded-lg tracking-widest w-3/4 "
                 onChange={handleChange}
               />
             </div>
@@ -376,7 +398,7 @@ const AddMovie = () => {
         {/* Footer section */}
         <div className="flex justify-end">
           <button
-            className="rounded-lg bg-red-500 text-white hover:bg-red-700 transition duration-200 hover:scale-95 px-4 py-2 text-3xl"
+            className="rounded-lg bg-red-500 text-white hover:bg-red-700 transition duration-150 hover:scale-90 px-4 py-2 text-3xl"
             onClick={() => addMovieMutation.mutate(movieDetails)}
           >
             Submit

@@ -188,7 +188,7 @@ const Register = () => {
                 </div>
                 <button
                   type="submit"
-                  className="bg-red-600 text-white py-3 rounded-lg hover:transition duration-150 hover:bg-red-700 font-bold tracking-wider hover:scale-105"
+                  className="bg-red-500 text-white py-3 rounded-lg hover:transition duration-150 hover:bg-red-700 font-bold tracking-wider hover:scale-90"
                 >
                   {CREATE_ACCOUNT}
                 </button>

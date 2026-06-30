@@ -142,7 +142,7 @@ const Login = () => {
                 </div>
                 <button
                   type="submit"
-                  className="bg-sky-600 text-white py-3 rounded-lg hover:transition duration-150 hover:bg-sky-700 font-bold tracking-wider hover:scale-105"
+                  className="bg-sky-500 text-white py-3 rounded-lg hover:transition duration-150 hover:bg-sky-700 font-bold tracking-wider hover:scale-90"
                 >
                   {SIGN_IN}
                 </button>

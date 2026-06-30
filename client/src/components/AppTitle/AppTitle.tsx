@@ -30,7 +30,7 @@ const AppTitle = ({
       <div className="text-2xl text-white">
         {token?.role === "Admin" && buttonInfo ? (
           <button
-            className="bg-blue-500  rounded-full p-4 transition duration-200 hover:bg-blue-700 hover:scale-110"
+            className="bg-blue-500  rounded-full p-4 transition duration-150 hover:bg-blue-700 hover:scale-90"
             onClick={() => navigate("/addMovie")}
           >
             {buttonInfo}
