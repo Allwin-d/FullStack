@@ -52,19 +52,22 @@ export const REGISTER_SUCCESS = "Registered Successfully";
 export const ALREADY_HAVE_AN_ACCOUNT = "Already have an Account ?";
 export const REGISTER = "Register";
 
-//Add movie 
-export const BASIC_INFORMATION ="Basic Information";
-export const BASIC_INFO_DESC ="Title, director, language and year"
+//Add movie
+export const BASIC_INFORMATION = "Basic Information";
+export const BASIC_INFO_DESC = "Title, director, language and year";
 export const MOVIE_TITLE = "Movie Title";
-export const DIRECTOR ="Director";
+export const DIRECTOR = "Director";
 export const LANGUAGE = "Language";
-export const GENRE_AND_CAST ="Genre & Cast";
-export const GENRE_CAST_DESC ="Add genres and cast members";
+export const GENRE_AND_CAST = "Genre & Cast";
+export const GENRE_CAST_DESC = "Add genres and cast members";
 export const GENRE = "Genre";
-export const CAST_MEMBERS ="Cast Members";
-export const RATING_AND_DURATION= "Rating & Duration";
-export const RATING_DESC="Enter a value between 1.0 and 10.0";
-export const DURATION ="Duration(MINS)";
-export const DURATION_DESC= "Total runtime in minutes";
-export const SYNOPSIS_DESC="Short description of the movie";
-
+export const CAST_MEMBERS = "Cast Members";
+export const RATING_AND_DURATION = "Rating & Duration";
+export const RATING_DESC = "Enter a value between 1.0 and 10.0";
+export const DURATION = "Duration(MINS)";
+export const DURATION_DESC = "Total runtime in minutes";
+export const SYNOPSIS_DESC = "Short description of the movie";
+export const MOVIE_POSTER = "Movie Poster";
+export const MOVIE_POSTER_DESC =
+  "Paste a direct image URL for the movie poster";
+export const POSTER_URL = "Poster URL";
