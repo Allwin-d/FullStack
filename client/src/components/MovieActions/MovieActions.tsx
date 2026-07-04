@@ -6,7 +6,7 @@ import useAuth from "../../hooks/useAuth";
 import type { payloadType } from "../../hooks/useAuth.types";
 import { useNavigate } from "react-router-dom";
 
-const MovieActions = ({ rating, id }: MovieActionsType) => {
+const MovieActions = ({ rating, id, onDeleteClick }: MovieActionsType) => {
   const token = useAuth() as payloadType;
   const navigate = useNavigate();
 
@@ -21,8 +21,10 @@ const MovieActions = ({ rating, id }: MovieActionsType) => {
       />
       <FaEdit
         className={`cursor-pointer transition duration-200 hover:scale-125 ${token.role === "User" ? "hidden" : "visible"}`}
+        onClick={() => navigate(`/editMovie/${id}`)}
       />
       <FaTrashAlt
+        onClick={onDeleteClick}
         className={`cursor-pointer transition duration-200 hover:scale-125 ${token.role === "User" ? "hidden" : "visible"}`}
       />
     </div>

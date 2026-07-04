@@ -5,6 +5,7 @@ import Register from "./pages/Register/Register";
 import AddMovie from "./pages/AddMovies/AddMovie";
 import MovieDetail from "./pages/MovieDetail/MovieDetail";
 import { Toaster } from "react-hot-toast";
+import UpdateMovie from "./pages/UpdateMovie/UpdateMovie";
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
           <Route path="/register" element={<Register />}></Route>
           <Route path="/addMovie" element={<AddMovie />}></Route>
           <Route path="/movieDetail/:id" element={<MovieDetail />}></Route>
+          <Route path="/editMovie/:id" element={<UpdateMovie />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

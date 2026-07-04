@@ -10,3 +10,12 @@ export const POST_LOGIN_USER = `${BASE_URL}/api/auth/login`;
 
 //ADD MOVIE
 export const ADD_MOVIE = `${BASE_URL}/api/movies`;
+
+//DELETE MOVIE
+export const DELETE_MOVIE = `${BASE_URL}/api/movies`;
+
+//UPDATE MOVIE
+export const UPDATE_MOVIE = `${BASE_URL}/api/movies`;
+
+//GET SINGLE MOVIE
+export const GET_MOVIE_BY_ID = `${BASE_URL}/api/movies`;

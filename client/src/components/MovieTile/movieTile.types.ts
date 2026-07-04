@@ -7,4 +7,5 @@ export type MovieTileType = {
   duration: number;
   genre: string[];
   rating: number;
+  onDeleteClick : () => void;
 };

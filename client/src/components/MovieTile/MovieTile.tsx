@@ -12,6 +12,7 @@ const MovieTile = ({
   duration,
   genre,
   rating,
+  onDeleteClick
 }: MovieTileType) => {
   return (
     <div className="flex flex-row items-center justify-between shadow-md p-4 transition-all duration-150 hover:shadow-xl">
@@ -28,7 +29,7 @@ const MovieTile = ({
       </div>
 
       {/* This is for the Right Side Section */}
-      <MovieActions rating={rating} id={id} />
+      <MovieActions rating={rating} id={id} onDeleteClick ={onDeleteClick} />
     </div>
   );
 };

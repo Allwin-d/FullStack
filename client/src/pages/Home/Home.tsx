@@ -1,7 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
-import { GET_ALL_MOVIES } from "../../url/url";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { DELETE_MOVIE, GET_ALL_MOVIES } from "../../url/url";
 import axios from "axios";
-import type { movieDataType } from "../Home/home.types";
+import type { movieDataType, singleMovie } from "../Home/home.types";
 import {
   FAILED_LOADING_DATA,
   LOADING_DATA,
@@ -9,21 +9,51 @@ import {
 import MovieTile from "../../components/MovieTile/MovieTile";
 import Header from "../../components/Header/Header";
 import AppTitle from "../../components/AppTitle/AppTitle";
+import DeleteModal from "../../components/DeleteModal/DeleteModal";
+import { useState } from "react";
+
 const Home = () => {
-  const API_URL = GET_ALL_MOVIES;
-  console.log("This is the api url for Get All Movies : ", API_URL);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [movieToDelete, setMovieToDelete] = useState<singleMovie | null>(null);
+
+  const queryClient = useQueryClient();
 
   const getAllMovies = async () => {
-    const data = await axios.get<movieDataType>(API_URL);
-    console.log("All Movie Data : ", data);
+    const data = await axios.get<movieDataType>(GET_ALL_MOVIES);
     return data.data;
   };
 
   const { data, isError, isLoading } = useQuery({
     queryKey: ["Movies"],
     queryFn: getAllMovies,
-    enabled: !!API_URL, //the query fn gets called only if the (API_URL) available
+    enabled: !!GET_ALL_MOVIES,
   });
+
+  //Delete functionality
+  const { mutate: deleteMovie, isPending: isDeleting } = useMutation({
+    mutationFn: (id: string) => axios.delete(`${DELETE_MOVIE}/${id}`),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["Movies"] }); // ✅ refetch list after delete
+      setShowDeleteModal(false);
+      setMovieToDelete(null);
+    },
+    onError: () => {
+      alert("Failed to delete movie. Please try again.");
+    },
+  });
+
+  // ✅ called from MovieTile → MovieActions → DeleteIcon
+  const handleDeleteClick = (movie: singleMovie) => {
+    setMovieToDelete(movie);
+    setShowDeleteModal(true);
+  };
+
+  // ✅ called from modal confirm button
+  const handleConfirmDelete = () => {
+    if (movieToDelete) {
+      deleteMovie(movieToDelete._id);
+    }
+  };
 
   if (isError) {
     return (
@@ -42,7 +72,7 @@ const Home = () => {
   }
 
   return (
-    <div className="min-h-screen w-full ">
+    <div className="min-h-screen w-full">
       <Header />
       <AppTitle
         totalMovies={data?.totalMovies ?? 0}
@@ -51,10 +81,10 @@ const Home = () => {
         buttonInfo="+ Add Movie"
         text="view only"
       />
-      <div className="flex flex-col space-y-10  p-12 bg-gray-100">
-        {data?.data.map((movie, key) => (
+      <div className="flex flex-col space-y-10 p-12 bg-gray-100">
+        {data?.data.map((movie) => (
           <MovieTile
-            key={key}
+            key={movie._id}
             id={movie._id}
             image={movie.image}
             title={movie.title}
@@ -63,9 +93,23 @@ const Home = () => {
             duration={movie.duration}
             genre={movie.genre}
             rating={movie.rating}
+            onDeleteClick={() => handleDeleteClick(movie)}
           />
         ))}
       </div>
+
+      {/* ✅ modal renders at Home level, above everything */}
+      {showDeleteModal && movieToDelete && (
+        <DeleteModal
+          movieTitle={movieToDelete.title}
+          isDeleting={isDeleting}
+          onCancel={() => {
+            setShowDeleteModal(false);
+            setMovieToDelete(null);
+          }}
+          onConfirm={handleConfirmDelete}
+        />
+      )}
     </div>
   );
 };
