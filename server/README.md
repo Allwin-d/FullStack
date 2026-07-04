@@ -47,7 +47,7 @@ JWT_EXPIRES_IN=7d
 git clone https://github.com/your-username/movie-catalogue-backend.git
 
 # Navigate into the project
-cd movie-catalogue-backend
+cd server
 
 # Install dependencies
 npm install
@@ -63,27 +63,29 @@ npm start
 
 ## Folder Structure
 
-src/
-├── config/
-│   └── db.js                 # MongoDB connection
-├── models/
-│   ├── Movie.js              # Movie schema
-│   └── User.js               # User schema
-├── controllers/
-│   ├── movieController.js    # Movie CRUD logic
-│   └── authController.js     # Register & login logic
-├── routes/
-│   ├── movieRoutes.js        # Movie API routes
-│   └── authRoutes.js         # Auth API routes
+```
+├── controller/
+│   ├── authController.ts       # Register & login logic
+│   └── MovieController.ts      # Movie CRUD logic
+├── Db/
+│   └── db.ts                   # MongoDB connection
 ├── middleware/
-│   ├── protect.js            # JWT verification middleware
-│   ├── authorize.js          # Role-based access middleware
-│   └── errorHandler.js       # Global error handler
-└── app.js                    # Express app setup
-server.js                     # Entry point
-.env                          # Environment variables
-package.json
-
+│   ├── adminMiddleware.ts      # Role-based access middleware
+│   └── authMiddleware.ts       # JWT verification middleware
+├── models/
+│   ├── MovieModel.ts           # Movie schema
+│   └── User.ts                 # User schema
+├── routes/
+│   ├── authRoutes.ts           # Auth API routes
+│   └── MovieRoutes.ts          # Movie API routes
+├── types/
+│   └── express.d.ts            # Express type extensions
+├── .env                        # Environment variables
+├── .gitignore
+├── app.ts                      # Express app setup
+├── package.json
+└── tsconfig.json
+```
 ---
 
 ## Database Schema
@@ -306,14 +308,11 @@ Authorization: Bearer <token>
 
 ## Middleware
 
-### `protect.js`
+### `authMiddleware.ts`
 Verifies the JWT token from the `Authorization` header on every protected route. Rejects requests with missing or invalid tokens with a `401 Unauthorized` response.
 
-### `authorize.js`
+### `adminMiddleware.ts`
 Checks the user's role from the decoded JWT payload. Only allows users with the `"Admin"` role to access protected routes. Returns `403 Forbidden` for unauthorized roles.
-
-### `errorHandler.js`
-Global error handling middleware. Catches all unhandled errors and returns a consistent error response format.
 
 ---
 
