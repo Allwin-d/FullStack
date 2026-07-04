@@ -35,5 +35,3 @@ Thumbs.db
 *.sln
 *.sw?
 
-package.json
-package-lock.json
