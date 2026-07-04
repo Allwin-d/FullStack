@@ -32,8 +32,8 @@ A full-stack Movie Catalogue application where users can browse movies and admin
 
 | Layer    | Platform | URL                          |
 | -------- | -------- | ---------------------------- |
-| Frontend | Vercel   | your-vercel-url.vercel.app   |
-| Backend  | Render   | your-render-url.onrender.com |
+| Frontend | Vercel   | https://movie-catalog-application-blush.vercel.app  |
+| Backend  | Render   | https://movie-catalog-application.onrender.com |
 
 ---
 
@@ -46,7 +46,7 @@ A full-stack Movie Catalogue application where users can browse movies and admin
 | Browse movies     | ✅   | ✅    |
 | View movie detail | ✅   | ✅    |
 | Add movie         | ❌   | ✅    |
-| Edit movie        | ❌   | ✅    |
+| Update movie        | ❌   | ✅    |
 | Delete movie      | ❌   | ✅    |
 
 ---
@@ -213,7 +213,7 @@ Admins can add new movies to the catalogue with full details.
 
 ---
 
-### 6. Edit Movie Page _(Admin only)_
+### 6. Update Movie Page _(Admin only)_
 
 **Purpose**  
 Allows admins to update an existing movie's details.
@@ -320,33 +320,50 @@ Full-screen overlay confirmation modal triggered before deleting a movie. Shows 
 
 ## Folder Structure
 
+```
 src/
 ├── components/
-│ ├── Header/
-│ ├── AppTitle/
-│ ├── MovieTile/
-│ ├── MoviePoster/
-│ ├── MovieInfo/
-│ ├── MovieActions/
-│ └── DeleteModal/
-├── pages/
-│ ├── Home/
-│ ├── MovieDetail/
-│ ├── AddMovie/
-│ ├── EditMovie/
-│ ├── Login/
-│ └── Register/
-├── hooks/
-│ └── useAuth.ts
+│   ├── AppTitle/
+│   ├── Cast/
+│   ├── DeleteModal/
+│   ├── Header/
+│   ├── Image/
+│   ├── MovieActions/
+│   ├── MovieGenre/
+│   ├── MovieInfo/
+│   ├── MovieMetaData/
+│   ├── MoviePoster/
+│   ├── MovieStatistics/
+│   ├── MovieTile/
+│   └── Synopsis/
 ├── constants/
-│ └── constantVariables.ts
+│   └── constantVariables.ts
+├── context/
+├── hooks/
+│   ├── useAuth.ts
+│   └── useAuth.types.ts
+├── images/
+│   └── icon.png
+├── pages/
+│   ├── AddMovies/
+│   ├── Home/
+│   ├── Login/
+│   ├── MovieDetail/
+│   ├── Register/
+│   └── UpdateMovie/
+├── types/
 ├── url/
-│ └── url.ts
-└── App.tsx
+│   └── url.ts
+├── utils/
+├── App.tsx
+├── index.css
+└── main.tsx
+```
 
 ---
 
 ## Future Features
+
 - 🔍 Search and filter movies by genre, language, year, and rating
 - 💬 Comment section on movie detail page
 - 📄 Pagination for the movie list
@@ -354,4 +371,5 @@ src/
 ---
 
 ## Author
+
 Built by Allwin 🚀
