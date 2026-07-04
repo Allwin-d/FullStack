@@ -27,7 +27,10 @@ app.set("views", path.join(__dirname, "views"));
 
 app.use(
   cors({
-    origin: "http://localhost:5173", // React/Vite frontend
+    origin: [
+      "http://localhost:5173",
+      "https://movie-catalog-application-one.vercel.app",
+    ], // React/Vite frontend
     credentials: true,
   }),
 );
