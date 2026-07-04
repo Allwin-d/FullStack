@@ -29,8 +29,8 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://movie-catalog-application-one.vercel.app",
-    ], // React/Vite frontend
+      "https://movie-catalog-application-blush.vercel.app",
+    ],
     credentials: true,
   }),
 );
